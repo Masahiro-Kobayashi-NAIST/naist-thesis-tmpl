@@ -18,10 +18,11 @@
  pdfborder={0 0 0.6},%
 % urlcolor=black,linkcolor=black,citecolor=black,%
  pdftitle={},% 修論のタイトルを入れる
- pdfauthor={},% 名前を入れる
+ pdfauthor={XX XX},% 名前を入れる
  pdfsubject={Master's thesis},%
  pdfkeywords={\ekeywords}]{hyperref}
 \usepackage{pxjahyper}
+\usepackage{bxwareki}
 
 % page layout from NAIST style
 %
@@ -31,8 +32,8 @@
 \evensidemargin=-3.8truecm            % 右の空きの幅
 
 % 第n章を n. 表記に
-%\renewcommand{\prechaptername}{}     % 数字の前の文字
-%\renewcommand{\postchaptername}{.}   % 数字の後ろの文字
+\renewcommand{\prechaptername}{}     % 数字の前の文字
+\renewcommand{\postchaptername}{.}   % 数字の後ろの文字
 
 % 数式の途中での改行を許可
 \allowdisplaybreaks[1]
@@ -85,11 +86,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \def\thebibliography#1{\chapter*{参考文献\markboth
- {参 考 文 献}{参 考 文 献}\addcontentsline{toc}{chapter}{参考文献}}\list
+ {参 考 文 献}{参 考 文 献}\addcontentsline{toc}{chapter}{参考文献}} \list
  {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
  \advance\leftmargin\labelsep
  \usecounter{enumi}}
- \def\newblock{\hskip .11trueem plus .33trueem minus -.07trueem}
+ \def\newblock{\hskip .11em plus .33em minus -.07em}
  \sloppy
  \sfcode`\.=1000\relax}
 \let\endthebibliography=\endlist
@@ -198,12 +199,22 @@
 \makeatletter
 
 % jsbook 用．各章の扉を jsarticle と同じ見た目にする
-%\makeatletter
-%\renewcommand{\chapter}{%
-%  \if@openright\cleardoublepage\else\clearpage\fi
-%  \global\@topnum\z@
-%  \secdef\@chapter\@schapter}
-%\makeatother
+\makeatletter
+\renewcommand{\chapter}{%
+ \if@openright\cleardoublepage\else\clearpage\fi
+ \global\@topnum\z@
+ \secdef\@chapter\@schapter}
+\makeatother
+
+% appendix追加
+\renewcommand{\appendix}{\par
+        \setcounter{section}{0}
+        \setcounter{subsection}{0}
+        \def\thesection{\Alph{section}.}
+        \def\thesubsection{\Alph{section}.\arabic{subsection}}
+        \def\thesubsubsection{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
+        \newpage
+}
 
 % ページ数を下部に表示 (reportならいらない)
 %\makeatletter
