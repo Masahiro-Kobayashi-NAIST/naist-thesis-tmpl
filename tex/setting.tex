@@ -210,13 +210,13 @@
 \renewcommand{\appendix}{\par
         \setcounter{section}{0}
         \setcounter{subsection}{0}
-        \setcounter{table}{1}
         \setcounter{figure}{0}
-        \def\thesection{\Alph{section}.}
+        \renewcommand{\postsectionname}{.}
+        \def\thesection{\Alph{section}}
         \def\thesubsection{\Alph{section}.\arabic{subsection}}
         \def\thesubsubsection{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
-        \renewcommand{\thetable}{\Alph{section}.\arabic{figure}}
-        \renewcommand{\thefigure}{\Alph{section}.\arabic{table}}
+        \renewcommand{\thetable}{\Alph{section}.\arabic{table}}
+        \renewcommand{\thefigure}{\Alph{section}.\arabic{figure}}
         \newpage
 }
 
